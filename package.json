@@ -1,0 +1,32 @@
+{
+  "name": "taiko-trailblazers",
+  "version": "1.0.0",
+  "author": "Bhakti Mega Buana <bhaktibuana19@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "main": "./dist/index.js",
+  "scripts": {
+    "build:prod": "jest && webpack",
+    "build:dev": "tsc --project tsconfig.test.json",
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register ./src/index.ts",
+    "start": "node -r tsconfig-paths/register ./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.8.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "ts-loader": "^9.5.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.11",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "web3": "^4.11.0"
+  }
+}
