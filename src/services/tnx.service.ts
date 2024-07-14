@@ -29,7 +29,7 @@ export const wrap = async (
     data,
   });
 
-  const gasPrice = await getGasPrice(web3, gas, "0.000001");
+  const gasPrice = await getGasPrice(web3, gas, "0.0000046");
   const gasPriceHex = web3.utils.toHex(gasPrice);
 
   const txData = {
@@ -83,7 +83,7 @@ export const unwrap = async (
     data,
   });
 
-  const gasPrice = await getGasPrice(web3, gas, "0.000001");
+  const gasPrice = await getGasPrice(web3, gas, "0.0000031");
   const gasPriceHex = web3.utils.toHex(gasPrice);
 
   const txData = {
