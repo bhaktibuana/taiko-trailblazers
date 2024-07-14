@@ -1,1 +1,5 @@
-console.log("hello world");
+import { main } from "@/app";
+
+main().catch((error) => {
+  console.error("Error:", error);
+});
