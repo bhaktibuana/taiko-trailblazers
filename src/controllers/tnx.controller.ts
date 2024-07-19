@@ -49,7 +49,7 @@ export const wrapUnwrap = async (
       if (res.success) {
         totalTimeInSecond += res.confirmed_in as number;
         console.log(
-          `[WRAP SUCCESS] Wrapped ${ethVal} ETH. Confirmed in ${res.confirmed_in}s`
+          `#${step} [WRAP SUCCESS] Wrapped ${ethVal} ETH. Confirmed in ${res.confirmed_in}s`
         );
       } else {
         console.log(`[WRAP FAILED] ${res.error}`);
@@ -61,7 +61,7 @@ export const wrapUnwrap = async (
       if (res.success) {
         totalTimeInSecond += res.confirmed_in as number;
         console.log(
-          `[UNWRAP SUCCESS] Unwrapped ${wethVal} WETH. Confirmed in ${res.confirmed_in}s`
+          `#${step} [UNWRAP SUCCESS] Unwrapped ${wethVal} WETH. Confirmed in ${res.confirmed_in}s`
         );
       } else {
         console.log(`[UNWRAP FAILED] ${res.error}`);
