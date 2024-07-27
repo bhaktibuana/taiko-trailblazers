@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { bridgePairs } from "@/constants";
 
 export const promptNetworkAndKey = async () => {
   const questions = [
@@ -31,7 +32,7 @@ export const promptActionType = async () => {
     type: "list",
     name: "actionType",
     message: "Select action:",
-    choices: ["Check balance", "Wrap-unwrap", "Exit"],
+    choices: ["Check balance", "Wrap-unwrap", "Bridge", "Exit"],
   } as any;
 
   return inquirer.prompt(question);
@@ -53,6 +54,42 @@ export const promptBalanceType = async () => {
     name: "balanceType",
     message: "Select balance to check:",
     choices: ["ETH", "WETH", "Back", "Exit"],
+  } as any;
+
+  return inquirer.prompt(question);
+};
+
+export const promptBridgePair = async (networkType: "testnet" | "mainnet") => {
+  const pairLabels = bridgePairs.filter(
+    (bridgePair) => bridgePair.networkType === networkType
+  ).map(bridgePair => bridgePair.label);
+
+  const question = {
+    type: "list",
+    name: "bridgePair",
+    message: "Select ETH bridge pair:",
+    choices: [...pairLabels, "Back", "Exit"],
+  } as any;
+
+  return inquirer.prompt(question);
+};
+
+export const promptBridgeAmountInput = async (availableBalance: string) => {
+  const question = {
+    type: "list",
+    name: "bridgeAmountInput",
+    message: `Choose ETH amount input type:\nYou have ${availableBalance} ETH in your account`,
+    choices: ["Use max ETH balance", "Insert amount", "Back", "Exit"],
+  } as any;
+
+  return inquirer.prompt(question);
+};
+
+export const promptInsertBridgeAmount = async (availableBalance: string) => {
+  const question = {
+    type: "input",
+    name: "insertBridgeAmount",
+    message: `You have ${availableBalance} ETH in your account, Insert amount of ETH to bridge:`,
   } as any;
 
   return inquirer.prompt(question);

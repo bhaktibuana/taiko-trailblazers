@@ -13,3 +13,8 @@ export const connection = (networkType: T_NetworkType) => {
     networkType,
   };
 };
+
+export const customConenction = (rpc: string) => {
+  const con = new Web3.providers.HttpProvider(rpc);
+  return new Web3(con);
+};

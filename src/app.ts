@@ -4,8 +4,12 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 import { connectAccount, connection } from "@/utils";
-import { promptActionType, promptNetworkAndKey } from "@/views";
-import { checkBalance, wrapUnwrap } from "@/controllers";
+import {
+  promptActionType,
+  promptNetworkAndKey,
+  promptBridgePair,
+} from "@/views";
+import { bridge, checkBalance, wrapUnwrap } from "@/controllers";
 
 export const main = async () => {
   const { networkType, privateKey } = await promptNetworkAndKey();
@@ -42,6 +46,27 @@ export const main = async () => {
 
     if (actionType === "Wrap-unwrap") {
       await wrapUnwrap(web3, networkType, account);
+    }
+
+    if (actionType === "Bridge") {
+      console.log("Be careful, this feature is not ready yet. Do not use mainnet or you might lost your assets!")
+      const { bridgePair } = await promptBridgePair(networkType);
+      if (bridgePair === "Exit") {
+        abort();
+        break;
+      }
+      if (bridgePair === "Back") {
+        continue;
+      }
+
+      const result = await bridge(privateKey, bridgePair);
+      if (result.exit) {
+        abort();
+        break;
+      }
+      if (result.back) {
+        continue;
+      }
     }
 
     const { continueAction } = await inquirer.prompt({
