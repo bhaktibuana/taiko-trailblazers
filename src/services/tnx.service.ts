@@ -29,8 +29,22 @@ export const wrap = async (
     data,
   });
 
-  const gasPrice = await getGasPrice(web3, gas, "0.0000046");
-  const gasPriceHex = web3.utils.toHex(gasPrice);
+  // const gasPrice = await getGasPrice(web3, gas, "0.0000046");
+  // const gasPriceHex = web3.utils.toHex(gasPrice);
+
+  // const txData = {
+  //   from: address,
+  //   to: wethContractAddress,
+  //   data,
+  //   value: amountInWei,
+  //   gas,
+  //   gasPrice: gasPriceHex,
+  // };
+
+  // use this code if network heavy
+  const gasPrice = BigInt(await web3.eth.getGasPrice());
+  const increasedGasPrice = (gasPrice * BigInt(105)) / BigInt(100); // Increase by 10%
+  const gasPriceHex = web3.utils.toHex(increasedGasPrice);
 
   const txData = {
     from: address,
@@ -83,8 +97,21 @@ export const unwrap = async (
     data,
   });
 
-  const gasPrice = await getGasPrice(web3, gas, "0.0000031");
-  const gasPriceHex = web3.utils.toHex(gasPrice);
+  // const gasPrice = await getGasPrice(web3, gas, "0.0000031");
+  // const gasPriceHex = web3.utils.toHex(gasPrice);
+
+  // const txData = {
+  //   from: address,
+  //   to: wethContractAddress,
+  //   data,
+  //   gas,
+  //   gasPrice: gasPriceHex,
+  // };
+
+  // use this code if network heavy
+  const gasPrice = BigInt(await web3.eth.getGasPrice());
+  const increasedGasPrice = (gasPrice * BigInt(105)) / BigInt(100); // Increase by 10%
+  const gasPriceHex = web3.utils.toHex(increasedGasPrice);
 
   const txData = {
     from: address,
